@@ -5,7 +5,7 @@ import math
 
 class Speicher:
     def __init__(self,):
-        self.board = np.zeros((1000,1000), dtype=int)
+        self.board = np.zeros((10,10), dtype=int)
 
 
 
@@ -20,8 +20,8 @@ def zaehler(array):
     zaehler1 = 0
     zaehler2 = 0
     overlaps = 0
-    while zaehler2 < 1000:
-        while zaehler1 < 1000:
+    while zaehler2 < 10:
+        while zaehler1 < 10:
             if array[zaehler2,zaehler1] > 1:
                 overlaps += 1
             zaehler1 += 1
@@ -70,39 +70,45 @@ if __name__ == "__main__":
                     matrix.board[y1,x1] += 1
                     x1 -= 1 
         else: 
-            differenz = int(math.dist([x1],[x2]))
+           # differenz = int(math.dist([x1],[x2]))
             # x1 > x2 and y1 > y2
             if x1 > x2 and y1 > y2:
-               while differenz >= 0:
-                   matrix.board[y1,x1] += 1
-                 #l  print(x1,y1,differenz)
-                   differenz -= 1
-                   y1 -= 1
-                   x1 -= 1
+                differenz = int(math.dist([x1],[x2]))
+                while differenz > 0:
+                    matrix.board[y1,x1] += 1
+                    print('Y ',y1,'X ',x1,'Diff ',differenz)
+                    differenz -= 1
+                    y1 -= 1
+                    x1 -= 1
             # x1 < x2 and y1 < y2
             if x1 < x2 and y1 < y2:
+                differenz = int(math.dist([x1],[x2]))
                 while differenz >= 0:
-                  # print(y1,x1,differenz)
+                  # print('Y ',y1,'X ',x1,'Diff ',differenz)
                    matrix.board[y1,x1] += 1
                    differenz -= 1
                    y1 += 1
                    x1 += 1
             # x1 < x2 and y1 > y2
             if x1 < x2 and y1 > y2:
+                differenz = int(math.dist([x1],[x2]))
                 while differenz >= 0:
+                   #print('Y ',y1,'X ',x1,'Diff ',differenz)
                    matrix.board[y1,x1] += 1
                    differenz -= 1
                    y1 -= 1
                    x1 += 1
             # x1 > x2 and y1 < y2
-            if x1 > x2 and y1 > y2:
+            if x1 > x2 and y1 < y2:
+                differenz = int(math.dist([x1],[x2]))
                 while differenz >= 0:
+                  # print('Y ',y1,'X ',x1,'Diff ',differenz)
                    matrix.board[y1,x1] += 1
                    differenz -= 1
                    y1 += 1
                    x1 -= 1
 
         counter += 2
-#print(matrix.board)
+print(matrix.board)
 print('Number of overlaping Points: ',zaehler(matrix.board))
 
