@@ -4,7 +4,7 @@ import numpy as np
 
 class Speicher:
     def __init__(self,):
-        self.board = np.zeros((10,10), dtype=int)
+        self.board = np.zeros((1000,1000), dtype=int)
 
 
 
@@ -14,6 +14,20 @@ def get_input():
         for line in file:
             coordinates += line.strip().split(' -> ')
     return coordinates
+
+def zaehler(array):
+    zaehler1 = 0
+    zaehler2 = 0
+    overlaps = 0
+    while zaehler2 < 1000:
+        while zaehler1 < 1000:
+            if array[zaehler2,zaehler1] > 1:
+                overlaps += 1
+            zaehler1 += 1
+        zaehler1 = 0
+        zaehler2 += 1
+    
+    return overlaps
 
 #START
 if __name__ == "__main__":
@@ -29,33 +43,35 @@ if __name__ == "__main__":
         y2 = int(second[1])
 
         if x1 == x2:
-           
+           # print('x1 = x2\nKoord1: ',first,'\nKoord2: ',second,'\n')
             if y1 < y2:
                 # links ist kleiner als rechts
-                while y1 < y2:
-                    matrix.board[x1,y1] += 1
+                while y1 < y2 + 1:
+                    matrix.board[y1,x1] += 1
                     y1 += 1      
             else:
                 # rechts ist kleiner als links
-                while y2 > y1:
-                    matrix.board[x1,y2] += 1
-                    y2 -= 1  
+                while y1 > y2 - 1:
+                    matrix.board[y1,x1] += 1
+                    y1 -= 1  
         
         elif y1 == y2:
-
+          #  print('y1 = y2\nKoord1: ',first,'\nKoord2: ',second,'\n')
             if x1 < x2:
                 # links ist kleiner als rechts
-                while x1 < x2:
-                    matrix.board[x1,y1] += 1
+                while x1 < x2 + 1:
+                 #   print(x1,y1)
+                    matrix.board[y1,x1] += 1
                     x1 += 1      
             else:
                 # rechts ist kleiner als links
-                while x2 > x1:
-                    matrix.board[x1,y2] += 1
-                    y2 -= 1  
+                while x1 > x2 - 1:
+                    matrix.board[y1,x1] += 1
+                    x1 -= 1  
         
         
-        #print('Koord1: ',first,'\nKoord2: ',second,'\n')
 
         counter += 2
-print(matrix.board)
+#print(matrix.board)
+print('Number of overlaping Points: ',zaehler(matrix.board))
+
