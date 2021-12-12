@@ -26,7 +26,7 @@ def zaehler(array):
             zaehler1 += 1
         zaehler1 = 0
         zaehler2 += 1
-    
+        
     return overlaps
 
 #START

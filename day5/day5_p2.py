@@ -5,13 +5,13 @@ import math
 
 class Speicher:
     def __init__(self,):
-        self.board = np.zeros((10,10), dtype=int)
+        self.board = np.zeros((1000,1000), dtype=int)
 
 
 
 def get_input():
     coordinates = []
-    with open('E:\\Github\\aoc_2021\\day5\\input.txt', 'r') as file:
+    with open('C:\\Git\\aoc_2021\\day5\\input.txt', 'r') as file:
         for line in file:
             coordinates += line.strip().split(' -> ')
     return coordinates
@@ -20,8 +20,8 @@ def zaehler(array):
     zaehler1 = 0
     zaehler2 = 0
     overlaps = 0
-    while zaehler2 < 10:
-        while zaehler1 < 10:
+    while zaehler2 < 1000:
+        while zaehler1 < 1000:
             if array[zaehler2,zaehler1] > 1:
                 overlaps += 1
             zaehler1 += 1
@@ -74,12 +74,15 @@ if __name__ == "__main__":
             # x1 > x2 and y1 > y2
             if x1 > x2 and y1 > y2:
                 differenz = int(math.dist([x1],[x2]))
-                while differenz > 0:
+                for zz in range(0, differenz):
                     matrix.board[y1,x1] += 1
-                    print('Y ',y1,'X ',x1,'Diff ',differenz)
-                    differenz -= 1
+                  #  print('Y ',y1,'X ',x1,'Diff ',differenz)
+                   # print(matrix.board)
+                    #differenz -= 1
                     y1 -= 1
                     x1 -= 1
+                matrix.board[y1,x1] += 1
+                
             # x1 < x2 and y1 < y2
             if x1 < x2 and y1 < y2:
                 differenz = int(math.dist([x1],[x2]))
@@ -92,12 +95,13 @@ if __name__ == "__main__":
             # x1 < x2 and y1 > y2
             if x1 < x2 and y1 > y2:
                 differenz = int(math.dist([x1],[x2]))
-                while differenz >= 0:
+                while differenz > 0:
                    #print('Y ',y1,'X ',x1,'Diff ',differenz)
                    matrix.board[y1,x1] += 1
                    differenz -= 1
                    y1 -= 1
                    x1 += 1
+                matrix.board[y1,x1] += 1
             # x1 > x2 and y1 < y2
             if x1 > x2 and y1 < y2:
                 differenz = int(math.dist([x1],[x2]))
