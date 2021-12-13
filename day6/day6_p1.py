@@ -15,7 +15,7 @@ def get_input():
 #START
 if __name__ == "__main__":
     fishlist = get_input().astype('int')
-    days = 80
+    days = 256
     day_counter = 0
 
     #print('Initial State: ',fishlist)
@@ -26,8 +26,9 @@ if __name__ == "__main__":
                fishlist.append(int(9))
                fishlist.append(int(7))
         fishlist = [x-1 for x in fishlist if x != 0]
+
         #print(fishlist)
-           
+        print(day_counter)   
         days -= 1
     print('After ',day_counter,' day:',len(fishlist))
     
