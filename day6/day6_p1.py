@@ -15,19 +15,20 @@ def get_input():
 #START
 if __name__ == "__main__":
     fishlist = get_input().astype('int')
-    days = 18
+    days = 80
     day_counter = 0
 
-    print('Initial State: ',fishlist)
+    #print('Initial State: ',fishlist)
     while days > 0:
         day_counter += 1
         for element in fishlist:
-            if element == 0:
-                element = 6
-                fishlist.append(int(8))
-            elif element > 0:
-                element -= 1
+            if element == 0 :
+               fishlist.append(int(9))
+               fishlist.append(int(7))
+        fishlist = [x-1 for x in fishlist if x != 0]
+        #print(fishlist)
            
         days -= 1
-        print('After ',day_counter,' day:',fishlist)
+    print('After ',day_counter,' day:',len(fishlist))
+    
         
