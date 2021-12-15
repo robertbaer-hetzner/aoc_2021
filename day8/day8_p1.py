@@ -1,19 +1,23 @@
 #!/usr/bin/env python3
-import numpy as np
-
 
 def get_input():
-    fish_timer = []
-    with open('C:\\Git\\aoc_2021\\day7\\input.txt', 'r') as file:
+    segments = []
+    with open('E:\\Git\\aoc_2021\\day8\\input.txt', 'r') as file:
         for line in file:
-            fish_timer += line.split(',')
-    ar = np.array(fish_timer, int) 
-    return ar
+            segments += line.strip().split(' | ')[1].split(' ')
+    return segments
 
+def selector(x):
+    if len(x) >= 2 or len(x) <= 4 or len(x) == 7:
+        return True
+    return False
+    
 #START
 if __name__ == "__main__":
-    numberlist = get_input().astype('int')
-
+    segments = get_input()
+    print(segments)
+    segments = list(filter(selector(), segments))
+    print('result: ', len(segments))
 # digit 0 has 6 wires a , b , c , e , f , g 
 # digit 1 has 2 wires c , f
 # digit 2 has 5 wires a , c , d , e , g
