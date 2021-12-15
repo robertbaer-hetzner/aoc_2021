@@ -4,7 +4,7 @@ import numpy as np
 
 def get_input():
     fish_timer = []
-    with open('E:\\Git\\aoc_2021\\day7\\input.txt', 'r') as file:
+    with open('C:\\Git\\aoc_2021\\day7\\input.txt', 'r') as file:
         for line in file:
             fish_timer += line.split(',')
     ar = np.array(fish_timer, int) 
