@@ -10,7 +10,7 @@ class Speicher:
 
 def get_input():
     coordinates = []
-    with open('E:\\Github\\aoc_2021\\day5\\input.txt', 'r') as file:
+    with open('C:\\Git\\aoc_2021\\day5\\input.txt', 'r') as file:
         for line in file:
             coordinates += line.strip().split(' -> ')
     return coordinates
