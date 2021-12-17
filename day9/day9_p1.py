@@ -11,25 +11,41 @@ def get_input():
             input_data += line.strip().split('\n')
     for element in input_data:
         output_data.append(list(element))
-    return output_data
+    return np.array(output_data, int)
     
 #START
 if __name__ == "__main__":
-    segments = np.array(get_input())
-    row_counter = 0
-    low_points = 0
-    while row_counter < len(segments):
-        line_counter = 0
-        while line_counter < len(segments[row_counter]):
-            if segments[row_counter,line_counter] == 0:
-                low_points += 1
-            elif line_counter == 0 or line_counter == len(segments[row_counter]):
-                #here check edge points
-                if segments[row_counter,line_counter] < segments[row_counter,line_counter]
-            elif line_counter > 0 and line_counter < len(segments[row_counter]):
-                #here check inlines
-                print()
-            line_counter += 1
-        row_counter += 1
+    heightmap = get_input()
+    risk_level = 0
+    for row in range(len(heightmap)):
+        
+        for column in range(len(heightmap[0])):
+            
+            if heightmap[row,column] == 0:
+                risk_level += heightmap[row,column] + 1
+                #print('Null')
+            elif row == 0:
+                #print('Firstline')
+                if heightmap[row,column-1] > heightmap[row,column] < heightmap[row,column+1] and heightmap[row,column] < heightmap[row+1,column]:
+                     risk_level += heightmap[row,column] + 1
+            elif row == len(heightmap)-1:
+                #print('Last Line')
+                if heightmap[row,column-1] > heightmap[row,column] < heightmap[row,column+1] and heightmap[row,column] < heightmap[row-1,column]:
+                     risk_level += heightmap[row,column] + 1
+            elif column == 0:
+                #print('First Column')
+                if  heightmap[row,column] < heightmap[row,column+1] and heightmap[row-1,column] > heightmap[row,column] < heightmap[row+1,column]:
+                     risk_level += heightmap[row,column] + 1
+            elif column == len(heightmap[0])-1:
+                #print('Last Column')
+                if  heightmap[row,column] < heightmap[row,column-1] and heightmap[row-1,column] > heightmap[row,column] < heightmap[row+1,column]:
+                     risk_level += heightmap[row,column] + 1
+            else:
+               #print('rest of the pack')
+                if  heightmap[row,column+1] > heightmap[row,column] < heightmap[row,column-1] and heightmap[row-1,column] > heightmap[row,column] < heightmap[row+1,column]:
+                     risk_level += heightmap[row,column] + 1
+
+    print('Risklevel: ',risk_level)
+
 
     
