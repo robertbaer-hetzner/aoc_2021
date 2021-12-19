@@ -15,15 +15,6 @@ def get_input():
     
 #START
 if __name__ == "__main__":
-<<<<<<< HEAD
-"""
-    all_basins = []
-    covered = []
-    data = get_input()
-    lmax = len(data)
-    dmax = len(data[0])
-    risk_levels = 0
-=======
     heightmap = get_input()
     risk_level = 0
     for row in range(len(heightmap)):
@@ -56,24 +47,5 @@ if __name__ == "__main__":
 
     print('Risklevel: ',risk_level)
 
->>>>>>> 20994f82904bd7ec13021f927fca58a899704ff2
 
-for lindex, line in enumerate(data):
-    for dindex, digit in enumerate(line):
-        conditions = []
-        if dindex - 1 >= 0:
-            conditions.append(digit < line[dindex-1])
-        if dindex + 1 < dmax:
-            conditions.append(digit < line[dindex+1])
-        if lindex - 1 >= 0:
-            conditions.append(digit < data[lindex-1][dindex])
-        if lindex + 1 < lmax:
-            conditions.append(digit < data[lindex+1][dindex])
-        if all(conditions):
-            all_basins.append({
-                'lowpoint': (dindex, lindex),
-                'values': []})
-            risk_levels += 1 + int(digit)
-print('part 1:', risk_levels)
-"""
     
