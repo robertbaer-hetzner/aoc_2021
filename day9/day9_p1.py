@@ -6,7 +6,7 @@ import numpy as np
 def get_input():
     input_data = []
     output_data = []
-    with open('E:\\Git\\aoc_2021\\day9\\input.txt', 'r') as file:
+    with open('C:\\Git\\aoc_2021\\day9\\input.txt', 'r') as file:
         for line in file:
             input_data += line.strip().split('\n')
     for element in input_data:
@@ -15,21 +15,30 @@ def get_input():
     
 #START
 if __name__ == "__main__":
-    segments = np.array(get_input())
-    row_counter = 0
-    low_points = 0
-    while row_counter < len(segments):
-        line_counter = 0
-        while line_counter < len(segments[row_counter]):
-            if segments[row_counter,line_counter] == 0:
-                low_points += 1
-            elif line_counter == 0 or line_counter == len(segments[row_counter]):
-                #here check edge points
-                if segments[row_counter,line_counter] < segments[row_counter,line_counter]
-            elif line_counter > 0 and line_counter < len(segments[row_counter]):
-                #here check inlines
-                print()
-            line_counter += 1
-        row_counter += 1
+"""
+    all_basins = []
+    covered = []
+    data = get_input()
+    lmax = len(data)
+    dmax = len(data[0])
+    risk_levels = 0
 
+for lindex, line in enumerate(data):
+    for dindex, digit in enumerate(line):
+        conditions = []
+        if dindex - 1 >= 0:
+            conditions.append(digit < line[dindex-1])
+        if dindex + 1 < dmax:
+            conditions.append(digit < line[dindex+1])
+        if lindex - 1 >= 0:
+            conditions.append(digit < data[lindex-1][dindex])
+        if lindex + 1 < lmax:
+            conditions.append(digit < data[lindex+1][dindex])
+        if all(conditions):
+            all_basins.append({
+                'lowpoint': (dindex, lindex),
+                'values': []})
+            risk_levels += 1 + int(digit)
+print('part 1:', risk_levels)
+"""
     
